@@ -1,0 +1,18 @@
+<strong>漫画投稿</strong>
+  <%= form_with model: @comic, url: comics_path, method: :post, local: true do |f| %>
+    <%= f.label :thumbnail, 'サムネイル' %>
+    <%= f.file_field :thumbnail %>
+    
+    <%= f.label :image, '漫画画像' %>
+    <%= f.file_field :images, multiple: true %>
+    
+    <%= f.label :name, '漫画名' %>
+    <%= f.text_field :name, placeholder: '漫画名' %>
+    
+    <%= f.label :introduction, '漫画説明欄' %>
+    <%= f.text_area :introduction, placeholder: 'ここに説明文を記述します' %>
+    
+    <%= f.label :genre_id, 'ジャンル' %>
+    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name),prompt: "-- 選択してください --" %>
+    <%= f.submit '投稿', class: "btn btn-success" %>
+  <% end %>

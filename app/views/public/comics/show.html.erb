@@ -1,0 +1,5 @@
+<% @comic.images.each do |image| %>
+  <%= image_tag image %>
+<% end %>
+<%= render 'layouts/comments', comic: @comic %>
+<%= render 'layouts/comment_form', comic: @comic, comment: @comment %>

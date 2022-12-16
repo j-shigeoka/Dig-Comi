@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <h1>漫画一覧</h1>
+    </div>
+    
+    <div class="col-2 text-right">
+      <%= link_to '投稿はこちらから', new_comic_path %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-2">
+      <%= render 'public/genres/genresearch', genres: @genres %>
+    </div>
+    
+    <% @comics.each do |comic| %>
+      <div class="col-2">
+        <%= link_to comic_path(comic.id) do %>
+          <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
+            <%= image_tag comic.thumbnail, size: "100x100" %>
+          <% else %>
+            <%= image_tag 'no_image.jpg', size: "100x100" %>
+          <% end%>
+          
+          <%= comic.name %>
+        <% end %>
+        
+        <%= render 'layouts/likes', comic: comic %><%#左側のcomicは部分テンプレート5行目のcomicに合わせている。右側のcomicは17行目の|comic|に合わせている。%>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="row">
+    <% @search_comic.each do |comic| %>
+      <%= link_to comic_path(comic.id) do %>
+          <% if comic.thumbnail.attached? %> 
+            <%= image_tag comic.thumbnail, size: "100x100" %>
+          <% else %>
+            <%= image_tag 'no_image.jpg', size: "100x100" %>
+          <% end%>
+          
+          <%= comic.name %>
+        <% end %>
+        
+        <%= render 'layouts/likes', comic: comic %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <h1>ジャンル別一覧</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <%= render 'public/genres/genresearch', genres: @genres %>
+    </div>
+  
+    <% @searchs.each do |search| %>
+      <div class="col-2">
+        <%= link_to comic_path(search.id) do %>
+          <% if search.thumbnail.attached? %> <%#サムネイルを表示する%>
+            <%= image_tag search.thumbnail, size: "100x100" %>
+          <% else %>
+            <%= image_tag 'no_image.jpg', size: "100x100" %>
+          <% end %>
+          
+          <%= search.name %>
+        <% end %>
+    <% end %>
+      </div>
+  </div>
+</div>

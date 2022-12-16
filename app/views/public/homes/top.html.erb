@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+  <p>ようこそ！<%= @user.full_name %></p>
+<% else %>
+  <%= flash[:notice] %>
+<% end %>
+<div>TOP</div>

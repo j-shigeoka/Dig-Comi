@@ -1,0 +1,6 @@
+<% if current_user %>
+  <%= form_with model:[comic,comment] do |f| %><%#[comic,comment]とすることによりcomic_comment_pathとなる。ネストした場合親のcomicも記述する。%>
+    <%= f.text_area :content, placeholder: "コメントをここに" %>
+    <%= f.submit "送信" %>
+  <% end %>
+<% end %>

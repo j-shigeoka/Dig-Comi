@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <h1>漫画一覧</h1>
+  </div>
+  
+  <div class="row">
+    <table>
+      <thead>
+        <tr>
+          <th>漫画ID</th>
+          <th>漫画名</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @comics.each do |comic| %>
+          <tr>
+            <td><%= comic.id %></td>
+            <td>
+              <%= link_to admin_comic_path(comic.id) do %>
+                <%= comic.name %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
