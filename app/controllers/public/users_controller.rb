@@ -1,8 +1,13 @@
 class Public::UsersController < ApplicationController
   def show
     @user = current_user
+    #likes = Like.where(user_id: @user.id).pluck(:comic_id)
+    #likes = Like.where(user_id: @user.id)
+    @like_comics = @user.comics.joins(:likes)
+   #byebug
+    #@like_comics = Comic.find(likes)
   end
-
+  
   def edit
     @user = current_user
   end
@@ -23,5 +28,4 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email)
   end
-
 end

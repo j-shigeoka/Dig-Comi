@@ -7,7 +7,6 @@ class CreateComics < ActiveRecord::Migration[6.1]
       t.string  :introduction,      null: false, default: ""
       t.text    :comic_image_url,   null: false, default: ""
       t.timestamps
-      add_column :comics, :status, :integer, default: 
     end
   end
 end

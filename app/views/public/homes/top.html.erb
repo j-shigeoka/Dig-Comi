@@ -1,6 +1,63 @@
-<% if user_signed_in? %>
-  <p>ようこそ！<%= @user.full_name %></p>
-<% else %>
-  <%= flash[:notice] %>
-<% end %>
-<div>TOP</div>
+<div class="container">
+  <div class="row mb-5">
+    <h1>トップページ</h1>
+  </div>
+  
+  <div class="row">
+    <i class="fas fa-crown fa-lg"></i>
+    <h4>人気ランキング</h4>
+  </div>
+  
+  <div class="row mb-5">
+    <% @like_comics.each do |comic| %><%#いいねランキング%>
+      <table>
+        <tr>
+          <td>
+            <%= link_to comic_path(comic.id) do %>
+              <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
+                <%= image_tag comic.thumbnail, size: "100x100" %>
+              <% else %>
+                <%= image_tag 'no_image.jpg', size: "100x100" %>
+              <% end%>
+          </td>
+          <td>
+            <%= comic.name %>
+          </td>
+            <% end %>
+          <td>
+            <%= render 'layouts/likes', comic: comic %><%#左側のcomicは部分テンプレート5行目のcomicに合わせている。右側のcomicは17行目の|comic|に合わせている。%>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+  
+  <div class="row">
+    <i class="far fa-lightbulb fa-2x"></i>
+    <h4>新着漫画</h4>
+  </div>
+  
+  <div class="row">
+    <% @new_comics.each do |comic| %><%#新着漫画%>
+      <table>
+        <tr>
+          <td>
+            <%= link_to comic_path(comic.id) do %>
+              <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
+                <%= image_tag comic.thumbnail, size: "100x100" %>
+              <% else %>
+                <%= image_tag 'no_image.jpg', size: "100x100" %>
+              <% end%>
+          </td>
+          <td>
+            <%= comic.name %>
+          </td>
+            <% end %>
+          <td>
+            <%= render 'layouts/likes', comic: comic %><%#左側のcomicは部分テンプレート5行目のcomicに合わせている。右側のcomicは17行目の|comic|に合わせている。%>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>

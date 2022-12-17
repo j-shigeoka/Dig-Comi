@@ -1,41 +1,50 @@
-<div class="container mb-3 p-3" style="background-color:#CCCCCC;">
-  <div class="row">
-    <div class="col-5 text-center">
-      <a href="/">ROGO</a>
-    </div>
-    
-    <div class="col-3"></div>
-    
-    <div class="searchbox col-3">
-      <%= search_form_for @search, url: comics_path do |f| %>
-        <div>
-          <%= f.text_field :name_cont, placeholder: '検索するテキストを入力' %>
-          <%= f.submit '検索', class: 'search-btn' %>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-1">
+<div class="row mb-5 p-3 bg-light shadow-sm">
+  <div class="col-4 text-center">
+    <a href="/">ROGO</a>
+  </div>
+  
+  <div class="col-2">
+    <% if user_signed_in? %>
+      <p>ようこそ！<%= current_user.full_name %>さん！</p>
+    <% elsif admin_signed_in? %>
+      <p>管理者画面です</p>
+    <% else %>
+      <p>ようこそ！ゲストさん！</p>
+    <% end %>
+  </div>
+  
+  <div class="searchbox col-3 text-right">
+    <%= search_form_for @search, url: comics_path do |f| %>
+      <div>
+        <%= f.text_field :name_cont, placeholder: '検索するテキストを入力' %>
+        <%= f.submit '検索', class: 'search-btn' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-3">
+    <nav class="navbar navbar-expand-lg navbar-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon "></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-            <li><%= link_to 'マイページ', users_my_page_path %></li>
-            <li><%= link_to '漫画一覧', comics_path %></li>
+            <li><%= link_to 'マイページ　', users_my_page_path, class: 'link' %></li>
+            <li><%= link_to '漫画一覧　', comics_path %></li>
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           <% elsif admin_signed_in? %>
-            <li><%= link_to '漫画一覧', admin_comics_path %></li>
-            <li><%= link_to '会員一覧', admin_users_path %></li>
-            <li><%= link_to 'ジャンル一覧', admin_genres_path %></li>
+            <li><%= link_to '漫画一覧　', admin_comics_path %></li>
+            <li><%= link_to '会員一覧　', admin_users_path %></li>
+            <li><%= link_to 'ジャンル一覧　', admin_genres_path %></li>
             <li><%= link_to 'ログアウト',  destroy_admin_session_path, method: :delete %></li>
           <% else %>
-            <li><%= link_to '漫画一覧', comics_path %></li>
-            <li><%= link_to '新規登録', new_user_registration_path %></li>
+            <li><%= link_to '漫画一覧　', comics_path %></li>
+            <li><%= link_to '新規登録　', new_user_registration_path %></li>
             <li><%= link_to 'ログイン', new_user_session_path %></li>
+          <% end %>
         </ul>
       </div>
-    </div>
-    <% end %>
+    </nav>
   </div>
+
 </div>

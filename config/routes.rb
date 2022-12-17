@@ -15,7 +15,11 @@ Rails.application.routes.draw do
     
     resources :genres, only: [:show]
     
-    get   'users/my_page' => "users#show"
+    get   'users/my_page' => "users#show" do
+      member do
+        get :likes
+      end
+    end
     get   'users/information/edit' => 'users#edit'
     patch 'users/information' => 'users#update'
     get   'users/unsubscribe' => 'users#unsubscribe'
