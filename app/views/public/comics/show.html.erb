@@ -1,5 +1,47 @@
-<% @comic.images.each do |image| %>
-  <%= image_tag image %>
-<% end %>
-<%= render 'layouts/comments', comic: @comic %>
-<%= render 'layouts/comment_form', comic: @comic, comment: @comment %>
+<div class="container">
+  <div class="row mb-5">
+    <h1><%= @comic.name %>　</h1>
+    
+    <div class="vertical-middle">
+      <%= render 'layouts/likes', comic: @comic %>
+    </div>
+  </div>
+  
+  <div class="row mb-5">
+    <div class="col">
+      <div class="mb-2">
+        <% @comic.images.each do |image| %>
+          <%= image_tag image, size: "570x300" %>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to "　読む　", comics_page_path, class: "btn btn-info" %>
+        <% if @user == @current_user %>
+          <%= link_to "編集する", edit_comic_path, class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="col">
+      <table class="table table-striped">
+        <tr>
+          <th>名前</th>
+          <td><%= @comic.name %></td>
+        </tr>
+        <tr>
+          <th>投稿者</th>
+          <td><%= @comic.user.full_name %></td>
+        </tr>
+        <tr>
+          <th>紹介</th>
+          <td><%= @comic.introduction %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row">
+    <%= render 'layouts/comments', comic: @comic %>
+    <%= render 'layouts/comment_form', comic: @comic, comment: @comment %>
+  </div>
+</div>

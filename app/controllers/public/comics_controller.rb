@@ -17,14 +17,30 @@ class Public::ComicsController < ApplicationController
 
   def edit
     @comic = Comic.find(params[:id])
+  end
+  
+  def update
+    @comic = Comic.find(params[:id])
+    @comic.update(comic_params)
     redirect_to comic_path(comic.id)
+  end
+
+  def destroy
+    @comic = Comic.find(params[:id])
+    @comic.destroy
+    redirect_to comics_path
   end
 
   def show
     @comic = Comic.find(params[:id])
+    @user = @comic.user_id
+    @current_user = current_user
     @comment = Comment.new
   end
 
+  def page
+    @comic = Comic.images
+  end
 
   private
 

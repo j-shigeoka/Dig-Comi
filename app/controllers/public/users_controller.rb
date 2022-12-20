@@ -1,11 +1,8 @@
 class Public::UsersController < ApplicationController
   def show
     @user = current_user
-    #likes = Like.where(user_id: @user.id).pluck(:comic_id)
-    #likes = Like.where(user_id: @user.id)
-    @like_comics = @user.comics.joins(:likes)
-   #byebug
-    #@like_comics = Comic.find(likes)
+    @comics = @user.comics
+    @like_comics = @user.comics.joins(:likes).page(params[:page]).per(16)
   end
   
   def edit
@@ -23,6 +20,15 @@ class Public::UsersController < ApplicationController
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
   end
+  
+  def guest_sign_in
+    user = User.find_or_create_by(email: "guest@example.com", first_name: "ト", last_name: "ゲス", first_name_kana: "a", last_name_kana: "a") do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+    sign_in user 
+    redirect_to root_path
+  end
+  
   private
   
   def user_params

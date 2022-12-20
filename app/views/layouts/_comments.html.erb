@@ -7,7 +7,9 @@
       <td><%= comment.content %></td>
       <td>
         <% if comment.user == current_user %>
-        <%= link_to "削除", comic_comment_path(comment.comic, comment), method: :delete, class: "btn btn-sm btn-danger p-0 p-1", style: "font-size: 8px;" %>
+          <%= link_to "削除", comic_comment_path(comment.comic, comment), method: :delete, class: "btn btn-sm btn-danger p-0 p-1", style: "font-size: 8px;" %>
+        <%else admin_signed_in? %>
+          <%= link_to "削除", comic_comment_path(comment.comic, comment), method: :delete, class: "btn btn-sm btn-danger p-0 p-1", style: "font-size: 8px;" %>
         <% end %>
       </td>
     </tr>

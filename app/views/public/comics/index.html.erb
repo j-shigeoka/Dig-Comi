@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row mb-3">
+  <div class="row mb-5">
     <div class="col-3 text-right">
       <h1>漫画一覧</h1>
     </div>
@@ -13,42 +13,26 @@
   </div>
   
   <div class="row">
+    <div class="col-2">
       <%= render 'public/genres/genresearch', genres: @genres %>
+    </div>
     
-    <% @comics.each do |comic| %>
-      <table>
-        <tr>
-          <td>
-            <%= link_to comic_path(comic.id) do %>
-              <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
-                <%= image_tag comic.thumbnail, size: "100x100" %>
-              <% else %>
-                <%= image_tag 'no_image.jpg', size: "100x100" %>
-              <% end%>
-          </td>
-          <td><%= comic.name %></td>
-            <% end %>
-          <td><%= render 'layouts/likes', comic: comic %></td>    <%#左側のcomicは部分テンプレート5行目のcomicに合わせている。右側のcomicは17行目の|comic|に合わせている。%>
-        </tr>
-      </table>
-    <% end %>
-      
-      
-  </div>
-  
-  <div class="row">
-    <% @search_comic.each do |comic| %>
-      <%= link_to comic_path(comic.id) do %>
-          <% if comic.thumbnail.attached? %> 
-            <%= image_tag comic.thumbnail, size: "100x100" %>
-          <% else %>
-            <%= image_tag 'no_image.jpg', size: "100x100" %>
-          <% end%>
-          
-          <%= comic.name %>
+    <div class="col-10 d-flex">
+      <% @comics.each do |comic| %>
+        <%= link_to comic_path(comic.id) do %>
+          <div>
+            <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
+              <%= image_tag comic.thumbnail, size: "100x100" %>
+            <% else %>
+              <%= image_tag 'no_image.jpg', size: "125x125" %>
+            <% end%>
+          </div>
+          <div><%= comic.name %></div>
         <% end %>
-        
-        <%= render 'layouts/likes', comic: comic %>
-    <% end %>
+          <div>
+            <%= render 'layouts/likes', comic: comic %>    <%#左側のcomicは部分テンプレート5行目のcomicに合わせている。右側のcomicは17行目の|comic|に合わせている。%>
+          </div>
+      <% end %>
+    </div>
   </div>
 </div>

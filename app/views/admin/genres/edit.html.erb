@@ -1,17 +1,15 @@
-<h1>ジャンル編集</h1>
-
-<%= form_with model: @genre, url: admin_genre_path(@genre.id) do |f| %>
-<table>
-  <tbody>
-    <tr>
-      <td>ジャンル名</td>
-        <td>
-        <%= f.text_field :name, class: 'form-control' %>
-        </td>
-        <td>
+<div class="container">
+  <div class="row mb-5">
+    <h1>ジャンル編集</h1>
+  </div>
+  
+  <div class="row">
+    <%= form_with model: @genre, url: admin_genre_path(@genre.id) do |f| %>
+      <div>
+        <%= f.label :name, 'ジャンル名' %>
+        <%= f.text_field :name %>
         <%= f.submit '変更を保存', class: "btn btn-success" %>
-        </td>
-    </tr>
-  </tbody>
-</table>
-<% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

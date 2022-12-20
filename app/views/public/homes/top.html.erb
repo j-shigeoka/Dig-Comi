@@ -8,27 +8,24 @@
     <h4>人気ランキング</h4>
   </div>
   
-  <div class="row mb-5">
-    <% @like_comics.each do |comic| %><%#いいねランキング%>
-      <table>
-        <tr>
-          <td>
-            <%= link_to comic_path(comic.id) do %>
-              <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
-                <%= image_tag comic.thumbnail, size: "100x100" %>
-              <% else %>
-                <%= image_tag 'no_image.jpg', size: "100x100" %>
-              <% end%>
-          </td>
-          <td>
-            <%= comic.name %>
-          </td>
-            <% end %>
-          <td>
+  <div class="row d-flex mb-5">
+    <% @ranks.each.with_index(1) do |comic, i| %><%#いいねランキング%>
+      <div class="mr-4">
+        第<%= i %>位
+        <%= link_to comic_path(comic.id) do %>
+          <div>
+            <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
+              <%= image_tag comic.thumbnail, size: "200x200" %>
+            <% else %>
+              <%= image_tag '2389161.jpg', size: "200x200" %>
+            <% end%>
+          </div>
+          <div><%= comic.name %></div>
+        <% end %>
+          <div>
             <%= render 'layouts/likes', comic: comic %><%#左側のcomicは部分テンプレート5行目のcomicに合わせている。右側のcomicは17行目の|comic|に合わせている。%>
-          </td>
-        </tr>
-      </table>
+          </div>
+      </div>
     <% end %>
   </div>
   
@@ -39,25 +36,23 @@
   
   <div class="row">
     <% @new_comics.each do |comic| %><%#新着漫画%>
-      <table>
-        <tr>
-          <td>
-            <%= link_to comic_path(comic.id) do %>
-              <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
-                <%= image_tag comic.thumbnail, size: "100x100" %>
-              <% else %>
-                <%= image_tag 'no_image.jpg', size: "100x100" %>
-              <% end%>
-          </td>
-          <td>
-            <%= comic.name %>
-          </td>
-            <% end %>
-          <td>
+      <div class="mr-3">
+        <%= link_to comic_path(comic.id) do %>
+          <div>
+            <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
+              <%= image_tag comic.thumbnail, size: "125x125" %>
+            <% else %>
+              <%= image_tag '2389161.jpg', size: "125x125" %>
+            <% end%>
+          </div>
+          <div><%= comic.name %></div>
+        <% end %>
+          <div>
             <%= render 'layouts/likes', comic: comic %><%#左側のcomicは部分テンプレート5行目のcomicに合わせている。右側のcomicは17行目の|comic|に合わせている。%>
-          </td>
-        </tr>
-      </table>
+          </div>
+      </div>
     <% end %>
   </div>
+  
+  <%= paginate @new_comics %>
 </div>

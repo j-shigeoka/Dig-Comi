@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
   def top
     @user = current_user
-    @like_comics = Comic.includes(:likes).sort {|a,b| b.likes.size <=> a.likes.size}
-    @new_comics = Comic.all.order(created_at: :desc)
+    @ranks = Comic.find(Like.group(:comic_id).order('count(comic_id) desc').limit(5).pluck(:comic_id))
+    @new_comics = Comic.all.order(created_at: :desc).page(params[:page]).per(16)
   end
 end

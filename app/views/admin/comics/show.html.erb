@@ -1,30 +1,41 @@
 <div class="container">
-  <div class="row">
-    <h1>漫画詳細</h1>
+  <div class="row mb-5">
+    <h1><%= @comic.name %>　</h1>
+    
+    <%= link_to "　削除　",  admin_comic_path(@comic.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
   </div>
   
-  <div class="row">
-    <div class="col-6">
-      <table>
+  <div class="row mb-5">
+    <div class="col">
+      <div class="mb-2">
+        <% @comic.images.each do |image| %>
+          <%= image_tag image, size: "570x300" %>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to "　読む　", comics_page_path, class: "btn btn-info" %>
+      </div>
+    </div>
+    
+    <div class="col">
+      <table class="table table-striped">
         <tr>
-          <td></td>
+          <th>名前</th>
+          <td><%= @comic.name %></td>
+        </tr>
+        <tr>
+          <th>投稿者</th>
+          <td><%= @comic.user.full_name %></td>
+        </tr>
+        <tr>
+          <th>紹介</th>
+          <td><%= @comic.introduction %></td>
         </tr>
       </table>
     </div>
-    
-    <div class="col-6">
-      <table>
-        <tr>
-          <td>漫画ID</td>
-          <td><%= @comic.id %></td>
-          
-          <td>漫画名</td>
-          <td><%= @comic.name %></td>
-          
-          <td>説明文</td>
-          <td><%= @comic.introduction %></td>
-        </tr>
-    </table>
-    </div>
+  </div>
+  
+  <div class="row">
+  <%= render 'layouts/comments', comic: @comic %>
   </div>
 </div>

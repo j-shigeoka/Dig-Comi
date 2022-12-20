@@ -8,10 +8,13 @@ Rails.application.routes.draw do
   scope module: :public do
     root :to => "homes#top"
     
+    post 'guest_sign_in', to: 'users#guest_sign_in'
+    
     resources :comics do
       resource :likes, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
+    get   'comics/page' => 'comics#page'
     
     resources :genres, only: [:show]
     
@@ -20,6 +23,7 @@ Rails.application.routes.draw do
         get :likes
       end
     end
+    
     get   'users/information/edit' => 'users#edit'
     patch 'users/information' => 'users#update'
     get   'users/unsubscribe' => 'users#unsubscribe'
@@ -29,8 +33,6 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
-  
-  get 'admin' => 'admin/comics#index'
   
   namespace :admin do
     resources :comics, except: [:new, :create]

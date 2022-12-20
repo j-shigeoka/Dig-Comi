@@ -4,31 +4,40 @@
   </div>
   
   <div class="row">
+    <div class="col-5"></div>
+    
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field">
+      <div class="field mb-3">
         <%= f.label :email, 'メールアドレス' %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
       </div>
     
-      <div class="field">
+      <div class="field mb-3">
         <%= f.label :password, 'パスワード' %><br />
         <%= f.password_field :password, autocomplete: "current-password" %>
       </div>
     
-      <div class="actions">
+      <div class="actions mb-5 text-center">
         <%= f.submit "ログイン" %>
       </div>
     <% end %>
     
-    <div class="row mb-2">
-      <h5 class="col col-md-3 offset-md-3 text-center mt-4" style="background-color:#DDD">
-        <strong>会員登録がお済い方</strong>
-      </h5>
+    <div>
+      <%= link_to "ゲストログイン", guest_sign_in_path, method: :post %>
     </div>
-    <div class="row mb-5 mt-3">
-      <div class="col col-md-8 offset-md-4">
-        <p><%= link_to "こちら", new_user_registration_path %>　から新規登録を行ってください。</p>
-      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-4"></div>
+    
+    <h4 class="col-4 text-center">会員登録がお済みではない方</h4>
+  </div>
+  
+  <div class="row">
+    <div class="col-4"></div>
+    
+    <div class="col-4 text-center">
+      <p><%= link_to "　こちら", new_user_registration_path %>から新規登録を行ってください。</p>
     </div>
   </div>
 </div>
