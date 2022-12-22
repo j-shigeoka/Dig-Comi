@@ -1,12 +1,19 @@
 class Public::UsersController < ApplicationController
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+    @current_user = current_user
     @comics = @user.comics
-    @like_comics = @user.comics.joins(:likes).page(params[:page]).per(16)
+    @like_comics = Comic.joins(:likes).where('likes.user_id = ?', @user.id).page(params[:page]).per(16)
   end
   
   def edit
     @user = current_user
+  end
+  
+  def update
+    @user = current_user
+    @user.update(user_params)
+    redirect_to users_my_page_path
   end
 
   def unsubscribe

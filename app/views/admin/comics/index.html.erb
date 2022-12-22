@@ -4,7 +4,7 @@
   </div>
   
   <div class="row">
-    <table class="table" border="3">
+    <table class="table table-striped" border="3">
       <thead class="thead-dark">
         <tr>
           <th>漫画ID</th>
@@ -18,13 +18,25 @@
         <% @comics.each do |comic| %>
           <tr>
             <td><%= comic.id %></td>
-            <td><%#= image_tag comic.thumbnail %></td>
+            <td>
+              <%= link_to admin_comic_path(comic.id) do %>
+                <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
+                  <%= image_tag comic.thumbnail, size: "70x70" %>
+                <% else %>
+                  <%= image_tag '2389161.jpg', size: "70x70" %>
+                <% end%>
+              <% end%>
+            </td>
             <td>
               <%= link_to admin_comic_path(comic.id) do %>
                 <%= comic.name %>
               <% end %>
             </td>
-            <td><%= comic.user.full_name %></td>
+            <td>
+              <%= link_to admin_user_path(comic.user.id) do %>
+                <%= comic.user.full_name %>
+              <% end %>
+            </td>
             <td><%= comic.likes.count %></td>
           </tr>
         <% end %>

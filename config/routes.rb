@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get "search" => "searches#search"
+  
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -13,16 +15,12 @@ Rails.application.routes.draw do
     resources :comics do
       resource :likes, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
+      get   'page'
     end
-    get   'comics/page' => 'comics#page'
     
     resources :genres, only: [:show]
     
-    get   'users/my_page' => "users#show" do
-      member do
-        get :likes
-      end
-    end
+    get   'users/my_page/:id' => "users#show", as: "user_my_page"
     
     get   'users/information/edit' => 'users#edit'
     patch 'users/information' => 'users#update'
@@ -35,7 +33,9 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    resources :comics, except: [:new, :create]
+    resources :comics, except: [:new, :create] do
+      get   'page'
+    end
     
     resources :genres, except: [:new, :show]
     

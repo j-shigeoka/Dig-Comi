@@ -1,13 +1,4 @@
 class ApplicationController < ActionController::Base
-  # def search
-  #   # キーワード検索
-  #   @search = Comic.ransack(params[:q])
-  #   @results = @search.result.order("created_at DESC").page(params[:page]).per(10)
-
-  #   # タグ検索
-  #   @tag_search = Comic.tagged_with(params[:search])
-  # end
-  
   
   private
   

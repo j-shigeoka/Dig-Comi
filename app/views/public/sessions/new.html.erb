@@ -17,14 +17,14 @@
         <%= f.password_field :password, autocomplete: "current-password" %>
       </div>
     
-      <div class="actions mb-5 text-center">
-        <%= f.submit "ログイン" %>
+      <div class="actions mb-3 text-center">
+        <%= f.submit "ログイン", class: "btn btn-primary" %>
+      </div>
+      
+      <div class="text-center mb-5">
+        <%= link_to "ゲストログイン", guest_sign_in_path, method: :post, class: "btn btn-warning " %>
       </div>
     <% end %>
-    
-    <div>
-      <%= link_to "ゲストログイン", guest_sign_in_path, method: :post %>
-    </div>
   </div>
   
   <div class="row">

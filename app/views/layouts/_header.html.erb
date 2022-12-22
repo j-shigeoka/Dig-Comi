@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-              <li><%= link_to 'マイページ　', users_my_page_path, class: 'link' %></li>
+              <li><%#= link_to 'マイページ　', user_my_page_path(@current_user), class: 'link' %></li>
               <li><%= link_to '漫画一覧　', comics_path %></li>
               <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <% elsif admin_signed_in? %>

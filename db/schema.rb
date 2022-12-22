@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 2022_12_20_121725) do
     t.string "introduction", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "thumbnail"
   end
 
   create_table "comments", force: :cascade do |t|

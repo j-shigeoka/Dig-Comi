@@ -9,7 +9,9 @@
     <div class="col-6"></div>
     
     <div class="col-3 text-left">
-      <%= link_to "編集する", users_information_edit_path, class: "btn btn-success" %>
+      <% if @user == @current_user %>
+        <%= link_to "編集する", users_information_edit_path, class: "btn btn-success" %>
+      <% end %>
     </div>
   </div>
   
@@ -78,6 +80,6 @@
     <% end %>
   </div>
   
-  <%= paginate @like_comics %>
+  <%#= paginate @like_comics %>
 </div>
 

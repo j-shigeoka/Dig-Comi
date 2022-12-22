@@ -33,19 +33,20 @@ class Public::ComicsController < ApplicationController
 
   def show
     @comic = Comic.find(params[:id])
-    @user = @comic.user_id
+    @user = @comic.user
     @current_user = current_user
     @comment = Comment.new
   end
 
   def page
-    @comic = Comic.images
+    @comic = Comic.find(params[:comic_id])
+    @pages = @comic.images
   end
 
   private
 
 
   def comic_params
-    params.require(:comic).permit(:name, :introduction, :genre_id, images: [])
+    params.require(:comic).permit(:name, :introduction, :genre_id, :thumbnail, images: [])
   end
 end

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row mb-3">
+  <div class="row mb-5">
     <h1>
       <%= @user.full_name %>さんの<strong>会員詳細</strong>
     </h1>
@@ -8,35 +8,65 @@
   <div class="row">
     <div class="col-5">
       <table class="table">
-      <tr>
-        <th>会員ID</th>
-        <td><%= @user.id %></td>
-      </tr>
-      <tr>
-        <th>氏名</th>
-        <td><%= @user.full_name %></td>
-      </tr>
-      <tr>
-        <th>フリガナ</th>
-        <td><%= @user.first_name_kana %></td>
-      </tr>
-      <tr>
-        <th>メールアドレス</th>
-        <td><%= @user.email %></td>
-      </tr>
-      <tr>
-        <th>会員ステータス</th>
-        <% if @user.is_deleted == false %>
-           <td class="text-success font-weight-bold">有効</td>
-        <% else %>
-          <td class="text-secondary font-weight-bold">退会</td>
-        <% end %>
-      </tr>
-    </table>
+        <tr>
+          <th>会員ID</th>
+          <td><%= @user.id %></td>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <td><%= @user.full_name %></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td><%= @user.first_name_kana %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <th>会員ステータス</th>
+          <% if @user.is_deleted == false %>
+             <td class="text-success font-weight-bold">有効</td>
+          <% else %>
+            <td class="text-secondary font-weight-bold">退会</td>
+          <% end %>
+        </tr>
+      </table>
+      <div>
+      <%= link_to "編集する", edit_admin_user_path, class: "btn btn-success" %>
+      </div>
     </div>
-  </div>
     
-  <div class="row">
-    <%= link_to "編集する", edit_admin_user_path, class: "btn btn-success" %>
+    <div class="col-1"></div>
+    
+    <div class="col-6">
+      <table class="table table-striped" border="3">
+        <tr class="thead-dark">
+          <th>ID</th>
+          <th>サムネイル</th>
+          <th>漫画名</th>
+        </tr>
+        <% @comic.each do |comic| %>
+          <tr>
+            <td><%= comic.id %></td>
+            <td>
+              <%= link_to admin_comic_path(comic.id) do %>
+                <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
+                  <%= image_tag comic.thumbnail, size: "70x70" %>
+                <% else %>
+                  <%= image_tag '2389161.jpg', size: "70x70" %>
+                <% end%>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to admin_comic_path(comic.id) do %>
+                <%= comic.name %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>

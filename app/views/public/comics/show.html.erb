@@ -10,12 +10,14 @@
   <div class="row mb-5">
     <div class="col">
       <div class="mb-2">
-        <% @comic.images.each do |image| %>
-          <%= image_tag image, size: "570x300" %>
-        <% end %>
+        <% if @comic.thumbnail.attached? %> <%#サムネイルを表示する%>
+          <%= image_tag @comic.thumbnail, size: "570x300" %>
+        <% else %>
+          <%= image_tag '2389161.jpg', size: "200x200" %>
+        <% end%>
       </div>
       <div>
-        <%= link_to "　読む　", comics_page_path, class: "btn btn-info" %>
+        <%= link_to "　読む　", comic_page_path(@comic.id), class: "btn btn-info" %>
         <% if @user == @current_user %>
           <%= link_to "編集する", edit_comic_path, class: "btn btn-success" %>
         <% end %>
@@ -30,7 +32,11 @@
         </tr>
         <tr>
           <th>投稿者</th>
-          <td><%= @comic.user.full_name %></td>
+          <td>
+            <%= link_to user_my_page_path(@comic.user_id) do %>
+              <%= @comic.user.full_name %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <th>紹介</th>

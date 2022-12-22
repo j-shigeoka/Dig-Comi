@@ -8,6 +8,20 @@ class Comic < ApplicationRecord
   has_one_attached :thumbnail
   has_many_attached :images
   
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @comic = Comic.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @comic = Comic.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @comic = Comic.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @comic = Comic.where("name LIKE?","%#{word}%")
+    else
+      @comic = Comic.all
+    end
+  end
+  
   def liked_by?(user)
     likes.exists?(user_id: user.id)
   end

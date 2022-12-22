@@ -13,19 +13,23 @@
         <% end %>
       </div>
       <div>
-        <%= link_to "　読む　", comics_page_path, class: "btn btn-info" %>
+        <%= link_to "　読む　", admin_comic_page_path(@comic.id), class: "btn btn-info" %>
       </div>
     </div>
     
     <div class="col">
       <table class="table table-striped">
         <tr>
-          <th>名前</th>
+          <th>漫画名</th>
           <td><%= @comic.name %></td>
         </tr>
         <tr>
           <th>投稿者</th>
-          <td><%= @comic.user.full_name %></td>
+          <td>
+            <%= link_to admin_user_path(@user.id) do %>
+              <%= @comic.user.full_name %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <th>紹介</th>
