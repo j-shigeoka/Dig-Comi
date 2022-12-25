@@ -5,7 +5,6 @@ class CreateComics < ActiveRecord::Migration[6.1]
       t.integer :user_id,           null: false, default: ""
       t.string  :name,              null: false, default: ""
       t.string  :introduction,      null: false, default: ""
-      t.text    :comic_image_url,   null: false, default: ""
       t.timestamps
     end
   end
