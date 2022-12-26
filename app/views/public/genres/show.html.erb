@@ -10,8 +10,10 @@
       <%= render 'public/genres/genresearch', genres: @genres %>
     </div>
   
-    <div class="col-10 d-flex">
+    <div class="col-10">
+      <div class="row mb-5">
       <% @searchs.each do |search| %>
+        <div class="col mr-4">
         <%= link_to comic_path(search.id) do %>
           <div>
             <% if search.thumbnail.attached? %> <%#サムネイルを表示する%>
@@ -25,7 +27,9 @@
           <div>
             <%= render 'layouts/likes', comic: search %>
           </div>
+        </div>
       <% end %>
+      </div>
     </div>
   </div>
 </div>

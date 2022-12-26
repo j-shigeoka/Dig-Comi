@@ -17,8 +17,10 @@
       <%= render 'public/genres/genresearch', genres: @genres %>
     </div>
     
-    <div class="col-10 mr-3 d-flex">
+    <div class="col-10">
+      <div class="row mb-5">
       <% @comics.each do |comic| %>
+        <div class="col mr-4">
         <%= link_to comic_path(comic.id) do %>
           <div>
             <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
@@ -32,7 +34,9 @@
           <div>
             <%= render 'layouts/likes', comic: comic %>    <%#左側のcomicは部分テンプレート5行目のcomicに合わせている。右側のcomicは17行目の|comic|に合わせている。%>
           </div>
+        </div>
       <% end %>
+      </div>
     </div>
   </div>
 </div>

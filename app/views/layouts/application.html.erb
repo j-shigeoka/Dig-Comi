@@ -11,10 +11,10 @@
   </head>
 
   <body>
-    <%# unless current_page?(admin_comic_page_path) %>
+    <% unless (params[:controller] == 'public/comics' || params[:controller] == 'admin/comics') && params[:action] == 'page' %>
       <%= render 'layouts/header' %>
       <%= render 'layouts/search' %>
-    <%# end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
