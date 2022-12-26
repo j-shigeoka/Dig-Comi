@@ -1,4 +1,6 @@
 class Public::ComicsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+  
   def new
     @comic = Comic.new
   end
@@ -22,7 +24,7 @@ class Public::ComicsController < ApplicationController
   def update
     @comic = Comic.find(params[:id])
     @comic.update(comic_params)
-    redirect_to comic_path(comic.id)
+    redirect_to comic_path(@comic.id)
   end
 
   def destroy

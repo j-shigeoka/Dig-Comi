@@ -1,4 +1,6 @@
 class Admin::ComicsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @comics = Comic.all
     @new_comics = @comics.order(created_at: :desc).page(params[:page]).per(10)

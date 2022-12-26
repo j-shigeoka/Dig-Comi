@@ -8,9 +8,11 @@
   <div class="row mb-5">
     <div class="col">
       <div class="mb-2">
-        <% @comic.images.each do |image| %>
-          <%= image_tag image, size: "570x300" %>
-        <% end %>
+        <% if @comic.thumbnail.attached? %> <%#サムネイルを表示する%>
+          <%= image_tag @comic.thumbnail, size: "570x300" %>
+        <% else %>
+          <%= image_tag '2389161.jpg', size: "200x200" %>
+        <% end%>
       </div>
       <div>
         <%= link_to "　読む　", admin_comic_page_path(@comic.id), class: "btn btn-info" %>

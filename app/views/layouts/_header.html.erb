@@ -1,7 +1,7 @@
 <div class="sticky-top">
-  <div class="row p-3 bg-light shadow-sm">
+  <div class="row p-3 mb-2 bg-light shadow-sm">
     <div class="col-4 text-center">
-      <a href="/">ROGO</a>
+      <h2><a href="/"><%= image_tag "23372171.jpg", size: "50x50" %>ディグコミ！</a></h2>
     </div>
     
     <div class="col-4 text-center">
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-              <li><%#= link_to 'マイページ　', user_my_page_path(@current_user), class: 'link' %></li>
+              <li><%= link_to 'マイページ　', user_my_page_path(@current_user), class: 'link' %></li>
               <li><%= link_to '漫画一覧　', comics_path %></li>
               <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <% elsif admin_signed_in? %>

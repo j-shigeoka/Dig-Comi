@@ -17,7 +17,7 @@
       <%= render 'public/genres/genresearch', genres: @genres %>
     </div>
     
-    <div class="col-10 d-flex">
+    <div class="col-10 mr-3 d-flex">
       <% @comics.each do |comic| %>
         <%= link_to comic_path(comic.id) do %>
           <div>

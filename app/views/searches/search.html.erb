@@ -1,35 +1,77 @@
-<h1>検索結果</h1>
+<div class="container">
+  <div class="row mb-5">
+    <h1>検索結果</h1>
+  </div>
+  
+  <div class="row">
+    <table class="table table-hover table-inverse">
+      <% if @range == "User" %>
+        <tbody>
+          <% if @users.present? %>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
+                  <% if admin_signed_in? %>
+                    <%= link_to admin_user_path(user.id) do %>
+                      <%= user.full_name %>
+                    <% end %>
+                  <% elsif signed_in? %>
+                   <%= link_to user_my_page_path(user.id) do %>
+                      <%= user.full_name %>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      <% elsif @range == "Comic" %>
+        <tbody>
+          <% if @comics.present? %>
+            <% @comics.each do |comic| %>
+              <tr>
+                <td><%= comic.name %></td>
+              
+                <td>
+                  <% if admin_signed_in? %>
+                    <%= link_to admin_comic_path(comic.id) do %>
+                      <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
+                        <%= image_tag comic.thumbnail, size: "125x125" %>
+                      <% else %>
+                        <%= image_tag '2389161.jpg', size: "125x125" %>
+                      <% end %>
+                    <% end %>
+                  <% elsif signed_in? %>
+                    <%= link_to comic_path(comic.id) do %>
+                      <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
+                        <%= image_tag comic.thumbnail, size: "125x125" %>
+                      <% else %>
+                        <%= image_tag '2389161.jpg', size: "125x125" %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      <% else %>
+        <tbody>
+          <% if @genres.present? %>
+            <% @genres.each do |genre| %>
+              <tr>
+                <td>
+                  <%= link_to genre_path(genre.id) do %>
+                    <%= genre.name %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>
 
-<table class="table table-hover table-inverse">
-  <% if @range == "User" %>
-    <tbody>
-      <% if @users.present? %>
-        <% @users.each do |user| %>
-          <tr>
-            <td><%= user.full_name %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  <% elsif @range == "Comic" %>
-    <tbody>
-      <% if @comics.present? %>
-        <% @comics.each do |comic| %>
-          <tr>
-            <td><%= comic.name %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  <% else %>
-    <tbody>
-      <% if @genres.present? %>
-        <% @genres.each do |genre| %>
-          <tr>
-            <td><%= genre.name %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  <% end %>
-</table>
+

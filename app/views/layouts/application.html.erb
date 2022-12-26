@@ -11,8 +11,10 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <%= render 'layouts/search' %>
+    <%# unless current_page?(admin_comic_page_path) %>
+      <%= render 'layouts/header' %>
+      <%= render 'layouts/search' %>
+    <%# end %>
     <%= yield %>
   </body>
 </html>
