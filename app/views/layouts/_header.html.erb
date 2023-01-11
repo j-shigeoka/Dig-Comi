@@ -20,18 +20,18 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-              <li><%= link_to 'マイページ　', user_my_page_path(current_user), class: 'link' %></li>
-              <li><%= link_to '漫画一覧　', comics_path %></li>
-              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to 'マイページ　', user_my_page_path(current_user), class: "link" %></li>
+              <li><%= link_to '漫画一覧　', comics_path, class: "link" %></li>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "link" %></li>
             <% elsif admin_signed_in? %>
-              <li><%= link_to '漫画一覧　', admin_comics_path %></li>
-              <li><%= link_to '会員一覧　', admin_users_path %></li>
-              <li><%= link_to 'ジャンル一覧　', admin_genres_path %></li>
-              <li><%= link_to 'ログアウト',  destroy_admin_session_path, method: :delete %></li>
+              <li><%= link_to '漫画一覧　', admin_comics_path, class: "link" %></li>
+              <li><%= link_to '会員一覧　', admin_users_path, class: "link" %></li>
+              <li><%= link_to 'ジャンル一覧　', admin_genres_path, class: "link" %></li>
+              <li><%= link_to 'ログアウト',  destroy_admin_session_path, method: :delete, class: "link" %></li>
             <% else %>
-              <li><%= link_to '漫画一覧　', comics_path %></li>
-              <li><%= link_to '新規登録　', new_user_registration_path %></li>
-              <li><%= link_to 'ログイン', new_user_session_path %></li>
+              <li><%= link_to '漫画一覧　', comics_path, class: "link" %></li>
+              <li><%= link_to '新規登録　', new_user_registration_path, class: "link" %></li>
+              <li><%= link_to 'ログイン', new_user_session_path, class: "link" %></li>
             <% end %>
           </ul>
         </div>
