@@ -16,7 +16,7 @@
                       <%= user.full_name %>
                     <% end %>
                   <% elsif signed_in? %>
-                   <%= link_to user_my_page_path(user.id) do %>
+                   <%= link_to user_my_page_path(user.id), class: "link" do %>
                       <%= user.full_name %>
                     <% end %>
                   <% end %>
