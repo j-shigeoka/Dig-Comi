@@ -61,7 +61,7 @@
             <% @genres.each do |genre| %>
               <tr>
                 <td>
-                  <%= link_to genre_path(genre.id) do %>
+                  <%= link_to genre_path(genre.id), class: "link" do %>
                     <%= genre.name %>
                   <% end %>
                 </td>
