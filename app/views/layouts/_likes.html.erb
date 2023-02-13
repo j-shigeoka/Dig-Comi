@@ -3,7 +3,7 @@
     <%= comic.likes.count %>
 <% else %> 
   <% if comic.liked_by?(current_user)%>
-    <%= link_to comic_likes_path(comic), method: :delete do %>
+    <%= link_to comic_likes_path(comic), method: :delete, class: "link" do %>
       <i class="fas fa-heart"></i>
       <%= comic.likes.count %>
     <% end %>
