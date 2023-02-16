@@ -21,7 +21,7 @@
       <div class="row mb-5">
       <% @comics.each do |comic| %>
         <div class="col mr-4">
-        <%= link_to comic_path(comic.id) do %>
+        <%= link_to comic_path(comic.id), class: "link" do %>
           <div>
             <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
               <%= image_tag comic.thumbnail, size: "100x100" %>
