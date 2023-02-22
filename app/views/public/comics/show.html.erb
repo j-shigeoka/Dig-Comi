@@ -33,7 +33,7 @@
         <tr>
           <th>投稿者</th>
           <td>
-            <%= link_to user_my_page_path(@comic.user_id) do %>
+            <%= link_to user_my_page_path(@comic.user_id), class: "link" do %>
               <%= @comic.user.full_name %>
             <% end %>
           </td>
