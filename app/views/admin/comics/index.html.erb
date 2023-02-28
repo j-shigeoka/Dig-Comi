@@ -19,7 +19,7 @@
           <tr>
             <td><%= comic.id %></td>
             <td>
-              <%= link_to admin_comic_path(comic.id) do %>
+              <%= link_to admin_comic_path(comic.id), class: "link" do %>
                 <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
                   <%= image_tag comic.thumbnail, size: "70x70" %>
                 <% else %>
