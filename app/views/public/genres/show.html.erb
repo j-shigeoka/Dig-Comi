@@ -14,7 +14,7 @@
       <div class="row mb-5">
       <% @searchs.each do |search| %>
         <div class="col mr-4">
-        <%= link_to comic_path(search.id) do %>
+        <%= link_to comic_path(search.id), class: "link" do %>
           <div>
             <% if search.thumbnail.attached? %> <%#サムネイルを表示する%>
               <%= image_tag search.thumbnail, size: "100x100" %>
