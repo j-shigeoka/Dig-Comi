@@ -37,7 +37,7 @@
   <div class="row">
     <% @new_comics.each do |comic| %><%#新着漫画%>
       <div class="mr-3">
-        <%= link_to comic_path(comic.id), class: "link" do %>
+        <%= link_to comic_path(comic.id) do %>
           <div>
             <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
               <%= image_tag comic.thumbnail, size: "125x125" %>
