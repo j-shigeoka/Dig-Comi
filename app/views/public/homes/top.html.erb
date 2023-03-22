@@ -12,7 +12,7 @@
     <% @ranks.each.with_index(1) do |comic, i| %><%#いいねランキング%>
       <div class="col mr-4">
         第<%= i %>位
-        <%= link_to comic_path(comic.id), class: "link" do %>
+        <%= link_to comic_path(comic.id), class do %>
           <div>
             <% if comic.thumbnail.attached? %> <%#サムネイルを表示する%>
               <%= image_tag comic.thumbnail, size: "200x200" %>
